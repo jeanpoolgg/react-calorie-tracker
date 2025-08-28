@@ -1,10 +1,8 @@
-import './App.css'
-
 function App() {
 
   return (
     <>
-     <h1>Calorie Tracker</h1>
+     <h1 className='font-bold' >Calorie Tracker</h1>
     </>
   )
 }
