@@ -1,13 +1,20 @@
-import { useState, type ChangeEvent } from "react"
+import { useState, type ChangeEvent, type Dispatch } from "react"
 import { categories } from "../data/categories"
 import type { Activity, Category } from "../types"
+import type { ActivityActions } from "../reducers/activity-reducer"
 
-export const Form = () => {
-    const [activity, setActivity] = useState<Activity>({
-        category: 1,
-        name: '',
-        calories: 0
-    });
+type FormProps = {
+    dispatch: Dispatch<ActivityActions>
+}
+
+const initialState = {
+    category: 1,
+    name: '',
+    calories: 0
+}
+
+export const Form = ({ dispatch }: FormProps) => {
+    const [activity, setActivity] = useState<Activity>(initialState);
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
         const isNumberField = ['category', 'calories'].includes(e.target.value);
@@ -24,8 +31,8 @@ export const Form = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        console.log('Submit...');
+        dispatch({type: 'save-activity', payload: { newActivity: activity }});
+        setActivity(initialState);
     }
 
 
@@ -52,7 +59,7 @@ export const Form = () => {
                 <input value={activity.calories} onChange={handleChange} type="number" id="calories" className="border border-slate-300 p-2 rounded-lg" placeholder="Calorías. ej. 300 o 500" />
             </div>
 
-            <input disabled={!isValidActivity()} type="submit" className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold disabled:opacity-10 uppercase text-white cursor-pointer" value={activity.category === 1? 'Guardar comida' : 'Guardar ejercicio'}  />
+            <input disabled={!isValidActivity()} type="submit" className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold disabled:opacity-10 uppercase text-white cursor-pointer" value={activity.category === 1 ? 'Guardar comida' : 'Guardar ejercicio'} />
         </form>
     )
 }
