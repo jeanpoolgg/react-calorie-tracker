@@ -22,9 +22,15 @@ export const Form = () => {
         return name.trim() !== '' && calories > 0
     }
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        console.log('Submit...');
+    }
+
 
     return (
-        <form className="space-y-5 bg-white shadow p-10 rounded-lg" >
+        <form onSubmit={handleSubmit} className="space-y-5 bg-white shadow p-10 rounded-lg" >
             <div className="grid grid-cols-1 gap-3" >
                 <label htmlFor="category" className="font-bold">Categoría:</label>
                 <select value={activity.category} onChange={handleChange} className="border border-slate-300 p-2 rounded-lg w-full" id="category">
