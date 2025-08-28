@@ -18,7 +18,7 @@ export const Form = ({ dispatch }: FormProps) => {
     const [activity, setActivity] = useState<Activity>(initialState);
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-        const isNumberField = ['category', 'calories'].includes(e.target.value);
+        const isNumberField = ['category', 'calories'].includes(e.target.id);
         setActivity({
             ...activity,
             [e.target.id]: isNumberField ? +e.target.value : e.target.value
