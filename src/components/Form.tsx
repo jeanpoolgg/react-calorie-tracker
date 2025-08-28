@@ -46,7 +46,7 @@ export const Form = () => {
                 <input value={activity.calories} onChange={handleChange} type="number" id="calories" className="border border-slate-300 p-2 rounded-lg" placeholder="Calorías. ej. 300 o 500" />
             </div>
 
-            <input disabled={!isValidActivity()} type="submit" className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold disabled:opacity-10 uppercase text-white cursor-pointer" value='Guardar comida o Guardar ejercicio' />
+            <input disabled={!isValidActivity()} type="submit" className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold disabled:opacity-10 uppercase text-white cursor-pointer" value={activity.category === 1? 'Guardar comida' : 'Guardar ejercicio'}  />
         </form>
     )
 }
